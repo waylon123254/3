@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns:haohao="http://www.itheima.com/haohao"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.itheima.com/haohao
+       http://www.itheima.com/haohao/haohao-annotation.xsd
+       http://dubbo.apache.org/schema/dubbo
+       http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+
+    <!--使用自定义命名空间的标签-->
+    <!--<haohao:annotation-driven></haohao:annotation-driven>-->
+
+    <!--加载properties文件-->
+    <!--<context:property-placeholder location="classpath:jdbc.properties"/>-->
+
+    <!--配置数据源信息-->
+    <!--<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>-->
+
+    <!--配置SqlSessionFactoryBean，作用将SqlSessionFactory存储到spring容器-->
+    <!--<bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>-->
+
+    <!--MapperScannerConfigurer,作用扫描指定的包，产生Mapper对象存储到Spring容器-->
+    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.itheima.mapper"></property>
+    </bean>-->
+
+    <!--<bean class="com.itheima.processor.TimeLogBeanPostProcessor"></bean>-->
+
+    <!--<bean id="userService" class="com.itheima.service.impl.UserServiceImpl">
+        <property name="userMapper" ref="userMapper"></property>
+    </bean>-->
+
+    <bean id="userService" class="com.itheima.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <!--<bean class="com.itheima.processor.MyBeanPostProcessor"></bean>-->
+
+    <!--<bean class="com.itheima.processor.MyComponentBeanFactoryPostProcessor"></bean>-->
+
+    <!--<bean class="com.itheima.processor.MyBeanFactoryPostProcessor"></bean>
+
+    <bean class="com.itheima.processor.MyBeanDefinitionRegistryPostProcessor"></bean>-->
+
+
+    <!--静态工厂方法方式-->
+    <!--<bean id="in" class="org.apache.ibatis.io.Resources" factory-method="getResourceAsStream">
+        <constructor-arg name="resource" value="mybatis-config.xml"></constructor-arg>
+    </bean>
+    &lt;!&ndash;无参构造实例化&ndash;&gt;
+    <bean id="builder" class="org.apache.ibatis.session.SqlSessionFactoryBuilder"></bean>
+    &lt;!&ndash;实例工厂方法&ndash;&gt;
+    <bean id="sqlSessionFactory" factory-bean="builder" factory-method="build">
+        <constructor-arg name="inputStream" ref="in"></constructor-arg>
+    </bean>-->
+
+    <!--配置日期对象-->
+    <!--<bean id="simpleDateFormat" class="java.text.SimpleDateFormat">
+        <constructor-arg name="pattern" value="yyyy-MM-dd HH:mm:ss"></constructor-arg>
+    </bean>
+    <bean id="date" factory-bean="simpleDateFormat" factory-method="parse">
+        <constructor-arg name="source" value="2023-08-27 12:00:00"></constructor-arg>
+    </bean>-->
+
+
+
+    <!--配置Connection-->
+    <!--<bean id="clazz" class="java.lang.Class" factory-method="forName">
+        <constructor-arg name="className" value="com.mysql.jdbc.Driver"></constructor-arg>
+    </bean>
+    <bean id="connection" class="java.sql.DriverManager" factory-method="getConnection" scope="prototype">
+        <constructor-arg name="url" value="jdbc:mysql://localhost:3306/mybatis"></constructor-arg>
+        <constructor-arg name="user" value="root"></constructor-arg>
+        <constructor-arg name="password" value="root"></constructor-arg>
+    </bean>-->
+
+
+
+
+
+    <!--<bean id="userService" class="com.itheima.service.impl.UserServiceImpl">
+        <property name="stringList">
+            <list>
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>ccc</value>
+            </list>
+        </property>
+        <property name="userDaoList">
+            <list>
+                <ref bean="userDao1"></ref>
+                <ref bean="userDao2"></ref>
+                <ref bean="userDao3"></ref>
+            </list>
+        </property>
+        <property name="strSet">
+            <set>
+                <value>xxxx</value>
+                <value>yyyy</value>
+            </set>
+        </property>
+        <property name="userDaoSet">
+            <set>
+                <ref bean="userDao1"></ref>
+                <ref bean="userDao2"></ref>
+                <ref bean="userDao3"></ref>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="d1" value-ref="userDao1"></entry>
+                <entry key="d2" value-ref="userDao2"></entry>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="p1">ppp1</prop>
+                <prop key="p2">ppp2</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="userDao1" class="com.itheima.dao.impl.UserDaoImpl"></bean>
+    <bean id="userDao2" class="com.itheima.dao.impl.UserDaoImpl"></bean>
+    <bean id="userDao3" class="com.itheima.dao.impl.UserDaoImpl"></bean>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--<bean id="userDao3" class="com.itheima.factory.MyBeanFactory3"></bean>
+
+    &lt;!&ndash;配置工厂对象&ndash;&gt;
+    <bean id="myBeanFactory2" class="com.itheima.factory.MyBeanFactory2"></bean>
+
+    <bean id="userDao2" factory-bean="myBeanFactory2" factory-method="userDao">
+        <constructor-arg name="username" value="haohao"/>
+    </bean>
+
+    <bean id="userDao1" class="com.itheima.factory.MyBeanFactory1" factory-method="userDao">
+        <constructor-arg name="name" value="haohao"></constructor-arg>
+        <constructor-arg name="age" value="18"></constructor-arg>
+    </bean>
+
+    &lt;!&ndash;配置UserServiceImpl&ndash;&gt;
+    <bean id="userService" class="com.itheima.service.impl.UserServiceImpl">
+        <constructor-arg name="name" value="haohao"></constructor-arg>
+        <constructor-arg name="age" value="18"></constructor-arg>
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+
+    &lt;!&ndash;配置UserDaoImpl&ndash;&gt;
+    <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl"></bean>-->
+
+
+</beans>
