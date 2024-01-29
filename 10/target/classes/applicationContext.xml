@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--开启组件扫描-->
+    <context:component-scan base-package="dao,service"></context:component-scan>
+    <!--直接配置连接池-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <!-- dataSource.setDriverClassName("com.mysql.jdbc. Driver") ;
+        set方法注入—->
+        <！- - 获取properties文件内容，根据key获取，使用spring表达式获取-->
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/spring03"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="dydy521521"></property>
+    </bean>
+
+    <!--JdbcTemplate对象-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <!--注入dataSource     set方法注入-->
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+
+</beans>
