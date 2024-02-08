@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <!--
+            现在beans.xml就是一个容器，存放各种对象
+            这里控制反转，由Spring帮我们创建对象，而不是程序，对象创建只需要通过配置文件操作
+            bean标签相当于帮我们创建了对象，等价于
+            Hello hello = new Hello()，id就是变量名，class是对象类型
+            property标签相当于帮我们给hello对象的属性 str 赋值为 Hello World
+         -->
+    <!--1.导入spring的坐标spring-context，对应版本是5.2.10.RELEASE-->
+
+    <!--2.配置bean-->
+    <!--bean标签标示配置bean
+    id属性标示给bean起名字
+    class属性表示给bean定义类型-->
+    <bean id="bookDao" class="com.itheima.Dao.impl.BookDaoImpl"/>
+
+    <bean id="bookService" class="com.itheima.Service.impl.BookServiceImpl">
+    </bean>
+</beans>
+
