@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="GENERAL_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="Spring" name="Spring">
+      <configuration>
+        <fileset id="fileset" name="ApplicationContext" removed="false">
+          <file>file://$MODULE_DIR$/spring_ioc_test01/src/main/resources/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/spring_ioc_test01/src/main/resources/applicationContext-orders.xml</file>
+          <file>file://$MODULE_DIR$/spring_ioc_test01/target/classes/applicationContext-orders.xml</file>
+          <file>file://$MODULE_DIR$/spring_ioc_test01/src/main/resources/applicationContext-user.xml</file>
+          <file>file://$MODULE_DIR$/spring_ioc_test01/target/classes/applicationContext-user.xml</file>
+          <file>file://$MODULE_DIR$/spring_ioc_test01/target/classes/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/spring_ioc_test01/src/main/resources/beans.xml</file>
+          <file>file://$MODULE_DIR$/spring_ioc_test01/target/classes/beans.xml</file>
+        </fileset>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
